@@ -1,0 +1,25 @@
+{{- if .Values.istio.enabled -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "spring-boot.fullname" . }}
+spec:
+  trafficPolicy:
+  {{- if .Values.istio.destinationRule.loadBalancer }}
+    loadBalancer: 
+      {{- if .Values.istio.destinationRule.loadBalancer.simple }}
+      simple: {{ .Values.istio.destinationRule.loadBalancerSimple }}
+      {{- end }}
+  {{- end }}
+  host:  "{{ .Values.service.name }}.{{ .Release.Namespace }}.{{ .Values.istio.domain }}"
+  {{- if .Values.istio.destinationRule.subsets }}
+  subsets:
+    {{- range .Values.istio.destinationRule.subsets }}
+    - name: {{ .name | quote }}
+      labels:
+        {{- range $key, $val := .labels }}
+        {{ $key | nindent 8 }}: {{ $val | quote }}
+        {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
