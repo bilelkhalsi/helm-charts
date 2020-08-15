@@ -34,8 +34,8 @@ jobs:
 
       - name: Run helm-docs
         run: |
-        chmod +x .github/helm-docs.sh
-        .github/helm-docs.sh
+          chmod +x .github/helm-docs.sh
+          .github/helm-docs.sh
 
   kubeval-chart:
     runs-on: ubuntu-latest
@@ -59,8 +59,8 @@ jobs:
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
         run: |
-        chmod +x .github/kubeval.sh
-        .github/kubeval.sh
+          chmod +x .github/kubeval.sh
+          .github/kubeval.sh
   
   install-chart:
     name: install-chart
