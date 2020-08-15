@@ -33,7 +33,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run helm-docs
-        run: .github/helm-docs.sh
+        run: |
+        chmod +x .github/helm-docs.sh
+        .github/helm-docs.sh
 
   kubeval-chart:
     runs-on: ubuntu-latest
@@ -56,7 +58,9 @@ jobs:
       - name: Run kubeval
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
-        run: .github/kubeval.sh
+        run: |
+        chmod +x .github/kubeval.sh
+        .github/kubeval.sh
   
   install-chart:
     name: install-chart
@@ -84,7 +88,7 @@ jobs:
           node_image: kindest/node:${{ matrix.k8s }}
 
       - name: Run chart-testing (install)
-        uses: helm/chart-testing-action@master
+        uses: helm/chart-testing-action@v1.0.0
         with:
           command: install
           config: .github/ct.yaml
