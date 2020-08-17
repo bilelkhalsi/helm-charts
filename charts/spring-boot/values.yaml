@@ -54,14 +54,14 @@ istio:
       - match:
           # istio VirtualService uri.prefix goes here
           uriPrefix: api
-        # istio VirtualService route.destination.host goes here  
+        # istio VirtualService route.destination.host goes here
         routeDestinationHost: api
         # istio VirtualService route.destination.subset goes here
         routeDestinationSubset: null
   destinationRule:
-    loadBalancer: 
+    loadBalancer:
       simple: ROUND_ROBIN
-    subsets: 
+    subsets:
       - name: release
         labels:
           version: realase
