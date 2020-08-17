@@ -2,7 +2,7 @@ apiVersion: v2
 name: spring-boot
 description: A Helm chart to package spring-boot application for Kubernetes
 maintainers:
-  - name: bilel khalsi
+  - name: bilelkhalsi
     email: bilel_khalsi@live.fr
 keywords:
   - kubernetes, helm, istio, spring-boot
