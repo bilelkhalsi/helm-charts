@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  ## Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
 imagePullSecrets: []
@@ -44,16 +44,20 @@ service:
 istio:
   enabled: false
   domain: cluster.local
-  gateway: null # by default, use the default istio gateway
-  #  hosts: 
+  # By default, use the default istio gateway
+  gateway: null
+  # hosts:
   virtualService:
     hosts: []
     matchUriPrefix: [api]
     rules:
       - match:
-          uriPrefix: api # istio VirtualService uri.prefix goes here
-        routeDestinationHost: api # istio VirtualService route.destination.host goes here
-        routeDestinationSubset:  null # istio VirtualService route.destination.subset goes here
+          # istio VirtualService uri.prefix goes here
+          uriPrefix: api
+        # istio VirtualService route.destination.host goes here  
+        routeDestinationHost: api
+        # istio VirtualService route.destination.subset goes here
+        routeDestinationSubset: null
   destinationRule:
     loadBalancer: 
       simple: ROUND_ROBIN
