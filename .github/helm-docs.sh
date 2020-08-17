@@ -9,5 +9,5 @@ tar -xf /tmp/helm-docs.tar.gz helm-docs
 chmod +x ./helm-docs
 
 # validate docs
-./helm-docs
+./helm-docs --dry-run
 git diff --exit-code
