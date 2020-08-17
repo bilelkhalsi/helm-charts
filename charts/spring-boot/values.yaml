@@ -42,7 +42,7 @@ service:
   port: 8080
 
 istio:
-  enabled: true
+  enabled: false
   domain: cluster.local
   gateway: null # by default, use the default istio gateway
   #  hosts: 
