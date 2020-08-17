@@ -10,4 +10,5 @@ chmod +x ./helm-docs
 
 # validate docs
 ./helm-docs --dry-run
+./helm-docs
 git diff --exit-code
