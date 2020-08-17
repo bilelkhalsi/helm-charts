@@ -2,6 +2,12 @@ apiVersion: v2
 name: spring-boot
 description: A Helm chart to package spring-boot application for Kubernetes
 
+keywords:
+  - kubernetes, helm, istio, spring-boot
+home: https://bilelkhalsi.github.io/helm-charts/
+sources:
+  - https://github.com/bilelkhalsi/helm-charts
+
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
