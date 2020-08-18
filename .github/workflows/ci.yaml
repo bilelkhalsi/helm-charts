@@ -33,8 +33,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run helm-docs
-        run: |
-          chmod +x .github/helm-docs.sh
+        run:
           .github/helm-docs.sh
 
   kubeval-chart:
@@ -58,8 +57,7 @@ jobs:
       - name: Run kubeval
         env:
           KUBERNETES_VERSION: ${{ matrix.k8s }}
-        run: |
-          chmod +x .github/kubeval.sh
+        run: 
           .github/kubeval.sh
   
   install-chart:
