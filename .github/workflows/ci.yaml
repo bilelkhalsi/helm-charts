@@ -54,6 +54,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+  
+      - name: Fetch history
+        run: git fetch --prune --unshallow
 
       - name: Run kubeval
         env:
@@ -81,6 +84,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+              
+      - name: Fetch history
+        run: git fetch --prune --unshallow
 
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@master
