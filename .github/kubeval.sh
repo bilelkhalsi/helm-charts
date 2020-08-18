@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
-
-CHART_DIRS="$(git diff --find-renames --name-only "$(git rev-parse --abbrev-ref HEAD)" remotes/origin/master -- charts | grep '[cC]hart.yaml' | sed -e 's#/[Cc]hart.yaml##g')"
+GIT_REVISION="$(git rev-parse --abbrev-ref HEAD)"
+CHART_DIRS="$(git diff --find-renames --name-only $GIT_REVISION remotes/origin/master -- charts | grep '[cC]hart.yaml' | sed -e 's#/[Cc]hart.yaml##g')"
 KUBEVAL_VERSION="0.14.0"
 SCHEMA_LOCATION="https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/"
 
