@@ -8,7 +8,7 @@ spec:
   {{- if .Values.istio.destinationRule.loadBalancer }}
     loadBalancer: 
       {{- if .Values.istio.destinationRule.loadBalancer.simple }}
-      simple: {{ .Values.istio.destinationRule.loadBalancerSimple }}
+      simple: {{ .Values.istio.destinationRule.loadBalancer.simple }}
       {{- end }}
   {{- end }}
   host:  "{{ .Values.service.name }}.{{ .Release.Namespace }}.{{ .Values.istio.domain }}"
