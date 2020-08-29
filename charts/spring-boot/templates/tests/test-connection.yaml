@@ -5,11 +5,11 @@ metadata:
   labels:
     {{- include "spring-boot.labels" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": test-success
+    "helm.sh/hook": test
 spec:
   containers:
-    - name: wget
-      image: busybox
+    - name: dnsutils
+      image: gcr.io/kubernetes-e2e-test-images/dnsutils:1.3
       command: ['wget']
-      args: ['{{ include "spring-boot.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ .Values.service.name }}:{{ .Values.service.port }}']
   restartPolicy: Never
