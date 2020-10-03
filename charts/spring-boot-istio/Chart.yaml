@@ -1,6 +1,14 @@
 apiVersion: v2
 name: spring-boot-istio
-description: A Helm chart for Kubernetes
+description: A Helm chart to add Istio resources to Kubernetes cluster
+maintainers:
+  - name: bilelkhalsi
+    email: bilel_khalsi@live.fr
+keywords:
+  - kubernetes, helm, istio, spring-boot
+home: https://bilelkhalsi.github.io/helm-charts/
+sources:
+  - https://github.com/bilelkhalsi/helm-charts
 
 # A chart can be either an 'application' or a 'library' chart.
 #
