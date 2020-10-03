@@ -1,0 +1,28 @@
+---------------------
+
+/!\
+
+If there is any error, please verify syntax used in values.yaml and compare it with Istio spec: 
+https://istio.io/latest/docs/reference/config/networking/
+
+--------------------
+
+{{- if .Values.enabled }}
+{{- if .Values.VirtualService }}
+
+Istio VirtualService created ! Please make sure :
+1 - The declared hosts are cluster/namespace specific.
+2 - The declared http.route.destinations match with your kubernetes Service name.
+3 - The declared http.route.destinations.subsets match with subsets declared in DestinationRule spec.
+{{- end }}
+
+{{- if .Values.DestinationRule }}
+
+Istio DestinationRule created ! Please make sure :
+1 - The declared host is cluster/namespace specific.
+2 - The declared selectors match at least one kubernetes Service.
+3 - The declared subsets match with http.route.destinations.subsets declared in VirtualService.
+{{- end }}
+{{- else }}
+There is nothing to be installed. Please set .Values.enabled to True if you want to install resources of this chart.
+{{- end }}

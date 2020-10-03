@@ -1,0 +1,12 @@
+{{- if .Values.enabled -}}
+{{- if .Values.DestinationRule -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "spring-boot-istio.fullname" . }}-destination
+  labels:
+    {{- include "spring-boot-istio.labels" . | nindent 4 }}
+spec:
+{{ .Values.DestinationRule.spec | toYaml | indent 2 }}
+{{- end }}
+{{- end }}
