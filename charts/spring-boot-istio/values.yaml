@@ -1,15 +1,10 @@
 # Default values for spring-boot-istio.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
 enabled: true
-
 nameOverride: ""
-
 fullnameOverride: ""
-
 # Istio VirtualService specification : https://istio.io/latest/docs/reference/config/networking/virtual-service/
-
 VirtualService:
   gateways:
   hosts:
@@ -27,8 +22,7 @@ VirtualService:
     route:
     - destination:
         host: api.org.cluster.local
-        subset: v2     
-  
+        subset: v2
 # Istio DestinationRule specification : https://istio.io/latest/docs/reference/config/networking/destination-rule/
 DestinationRule:
   spec:
@@ -42,6 +36,4 @@ DestinationRule:
         version: v1
     - name: v2
       labels:
-        version: v2    
-
-
+        version: v2
