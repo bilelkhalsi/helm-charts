@@ -1,0 +1,21 @@
+{{- if .Capabilities.APIVersions.Has "networking.istio.io/v1alpha3" -}}
+{{- if .Values.enabled -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "spring-boot-istio.fullname" . }}
+  labels:
+    {{- include "spring-boot-istio.labels" . | nindent 4 }}
+spec:
+{{- if .Values.VirtualService.gateway }}
+  gateways:
+{{ .Values.VirtualService.gateway | toYaml | indent 2 }}
+{{- end }}
+  hosts:
+{{ .Values.VirtualService.hosts | toYaml | indent 2 }}
+  http:
+{{ .Values.VirtualService.http | toYaml | indent 2 }}
+{{- end }}
+{{- end }}
+ 
+  
