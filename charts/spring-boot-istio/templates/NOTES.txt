@@ -6,7 +6,7 @@ If there is any error, please verify syntax used in values.yaml and compare it w
 https://istio.io/latest/docs/reference/config/networking/
 
 --------------------
-
+{{- if .Capabilities.APIVersions.Has "networking.istio.io/v1alpha3" -}}
 {{- if .Values.enabled }}
 {{- if .Values.VirtualService }}
 
@@ -25,4 +25,9 @@ Istio DestinationRule created ! Please make sure :
 {{- end }}
 {{- else }}
 There is nothing to be installed. Please set .Values.enabled to True if you want to install resources of this chart.
+{{- end }}
+{{- else }}
+
+It seems that Istio is not installed in your cluster. Please verify Istio install and retry.
+
 {{- end }}

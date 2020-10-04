@@ -1,3 +1,4 @@
+{{- if .Capabilities.APIVersions.Has "networking.istio.io/v1alpha3" -}}
 {{- if .Values.enabled -}}
 {{- if .Values.DestinationRule -}}
 apiVersion: networking.istio.io/v1alpha3
@@ -8,5 +9,6 @@ metadata:
     {{- include "spring-boot-istio.labels" . | nindent 4 }}
 spec:
 {{ .Values.DestinationRule.spec | toYaml | indent 2 }}
+{{- end }}
 {{- end }}
 {{- end }}
