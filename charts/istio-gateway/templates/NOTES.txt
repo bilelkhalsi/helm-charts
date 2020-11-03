@@ -1,0 +1,1 @@
+{{ include "istio-gateway.name" . }} Istio Gateway install on {{ .Values.namespace }} namespace.
