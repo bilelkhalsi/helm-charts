@@ -6,7 +6,7 @@
 namespace: istio-system
 
 # -- This needs to be a valid istio gateway configuration.For further gateway configuration, take a look in [istio documentation](https://istio.io/latest/docs/concepts/traffic-management/#gateways)
-servers: 
+servers:
   - port:
       number: 80
       name: http

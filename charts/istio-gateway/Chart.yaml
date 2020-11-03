@@ -1,7 +1,14 @@
 apiVersion: v2
 name: istio-gateway
 description: A Helm chart to install istio Gateway on kubernetes cluster. For further information on istio Gateway, take a look in [istio documentation](https://istio.io/latest/docs/concepts/traffic-management/#gateways)
-
+maintainers:
+  - name: bilelkhalsi
+    email: bilel_khalsi@live.fr
+keywords:
+  - kubernetes, helm, spring-boot
+home: https://bilelkhalsi.github.io/helm-charts/
+sources:
+  - https://github.com/bilelkhalsi/helm-charts
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives
