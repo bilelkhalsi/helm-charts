@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "istio-gateway.name" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  {{- with .Values.servers }}
+  servers: 
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
