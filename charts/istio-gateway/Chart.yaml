@@ -1,6 +1,6 @@
 apiVersion: v2
 name: istio-gateway
-description: A Helm chart to install istio Gateway on kubernetes cluster. For further information on istio Gateway, take a look in [istio documentation](https://istio.io/latest/docs/concepts/traffic-management/#gateways)
+description: A Helm chart to install istio Gateway on kubernetes cluster.
 maintainers:
   - name: bilelkhalsi
     email: bilel_khalsi@live.fr
