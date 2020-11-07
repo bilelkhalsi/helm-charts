@@ -3,6 +3,24 @@ entries:
   spring-boot:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2020-11-07T22:22:22.597709706Z"
+    description: A Helm chart to package spring-boot application for Kubernetes
+    digest: 33be43ce130cd70d593fe0365fa363a220747a6da15bdefea9c414916329af0c
+    home: https://bilelkhalsi.github.io/helm-charts/
+    keywords:
+    - kubernetes, helm, spring-boot
+    maintainers:
+    - email: bilel_khalsi@live.fr
+      name: bilelkhalsi
+    name: spring-boot
+    sources:
+    - https://github.com/bilelkhalsi/helm-charts
+    type: application
+    urls:
+    - https://github.com/bilelkhalsi/helm-charts/releases/download/spring-boot-0.1.4/spring-boot-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2020-10-04T23:06:06.208246148Z"
     description: A Helm chart to package spring-boot application for Kubernetes
     digest: 2b658a2185b01f4d9de1b24c49e14f6e40001a6d0955303ced7a7e3fad8de9c6
@@ -30,6 +48,24 @@ entries:
     - https://bilelkhalsi.github.com/helm-charts/spring-boot-0.1.0.tgz
     version: 0.1.0
   spring-boot-istio:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2020-11-07T22:22:22.685322178Z"
+    description: A Helm chart to add Istio resources to Kubernetes cluster
+    digest: de6f4a7a7aa893c09599fbf525197bfebf28ebac41789f943f453bf77c60cc55
+    home: https://bilelkhalsi.github.io/helm-charts/
+    keywords:
+    - kubernetes, helm, istio, spring-boot
+    maintainers:
+    - email: bilel_khalsi@live.fr
+      name: bilelkhalsi
+    name: spring-boot-istio
+    sources:
+    - https://github.com/bilelkhalsi/helm-charts
+    type: application
+    urls:
+    - https://github.com/bilelkhalsi/helm-charts/releases/download/spring-boot-istio-0.1.1/spring-boot-istio-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2020-10-04T23:06:06.399497994Z"
