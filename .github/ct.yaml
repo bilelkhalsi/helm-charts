@@ -1,3 +1,4 @@
 helm-extra-args: --timeout 15m
 check-version-increment: true
 debug: true
+charts: istio-gateway

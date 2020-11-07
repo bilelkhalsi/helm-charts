@@ -1,0 +1,60 @@
+name: spring-boot-istio - Validate and Install HELM chart
+
+on:
+  push:
+    paths:
+      - charts/spring-boot-istio/**
+    branches:
+      - master
+  pull_request:
+    paths:
+      - charts/spring-boot-istio/**
+    branches:
+      - master
+
+jobs:
+  kubeval-chart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
+      - name: Run kubeval on HELM chart
+        uses: instrumenta/kubeval-action@master
+        with:
+          files: charts/spring-boot-istio
+          version: 1.9.0
+          strict: true
+          ignore_missing_schemas: true  
+              
+  Install-chart:
+    name: install-chart
+    runs-on: ubuntu-latest
+    needs:
+      - kubeval-chart
+    strategy:
+      matrix:
+        k8s:
+        #  - v1.15.11@sha256:6cc31f3533deb138792db2c7d1ffc36f7456a06f1db5556ad3b6927641016f50
+        #  - v1.16.3@sha256:bced4bc71380b59873ea3917afe9fb35b00e174d22f50c7cab9188eac2b0fb88
+          - v1.18.2@sha256:7b27a6d0f2517ff88ba444025beae41491b016bc6af573ba467b70c5e8e0d85f
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+              
+      - name: Fetch history
+        run: git fetch --prune --unshallow
+
+      - name: Create kind ${{ matrix.k8s }} cluster
+        uses: helm/kind-action@v1.0.0
+        with:
+          node_image: kindest/node:${{ matrix.k8s }}
+
+      - name: Run chart-testing (install)
+        uses: helm/chart-testing-action@v1.0.0
+        with:
+          command: install --charts spring-boot-istio
+          config: .github/ct.yaml

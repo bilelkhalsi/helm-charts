@@ -1,9 +1,9 @@
-name: istio-gateway -  Release HELM chart
+name: spring-boot - Release HELM chart
 
 on:
   push:
     paths:
-      - charts/istio-gateway/**
+      - charts/spring-boot/**
     branches:
       - master
 
@@ -22,6 +22,6 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
         with:
-          charts_dir: charts/istio-gateway
+          charts_dir: charts/spring-boot
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"

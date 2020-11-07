@@ -1,4 +1,5 @@
-name: Test Istio Gateway HELM chart
+name: istio-gateway - Validate and Install HELM chart
+
 on:
   push:
     paths:
@@ -12,39 +13,14 @@ on:
       - master
 
 jobs:
-
-  lint-chart:
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Fetch history
-        run: git fetch --prune --unshallow
-
-      - name: Run chart-testing (lint)
-        id: lint
-        uses: helm/chart-testing-action@v1.0.0
-        with:
-          command: lint --charts charts/istio-gateway
-
-  lint-docs:
-    runs-on: ubuntu-latest
-    needs: lint-chart
-    steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run helm-docs
-        run: |
-          chmod +x .github/helm-docs.sh
-          .github/helm-docs.sh charts/istio-gateway
-
   kubeval-chart:
     runs-on: ubuntu-latest
-    needs: lint-docs
+    strategy:
+      matrix:
+        k8s:
+          - v1.16.15
+          - v1.17.11
+          - v1.18.8
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -52,15 +28,25 @@ jobs:
       - name: Fetch history
         run: git fetch --prune --unshallow
 
-      - name: Install kubeval HELM plugin
-        id: Install-kubeval
-        uses: helm/chart-testing-action@v1.0.0
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
         with:
-          command: helm plugin install https://github.com/instrumenta/helm-kubeval
+          version: v3.4.0
 
-      - name: Run kubeval on HELM chart
-        id: Run-kubeval
-        run: helm kubeval charts/istio-gateway -v 1.9.0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.0.0 
+
+      - name: Run kubeval
+        env:
+          KUBERNETES_VERSION: ${{ matrix.k8s }}
+          CHART_DIR: charts/istio-gateway
+        run: |
+          chmod +x .github/kubeval.sh
+          .github/kubeval.sh
               
   Install-chart:
     name: install-chart
@@ -70,23 +56,35 @@ jobs:
     strategy:
       matrix:
         k8s:
-        #  - v1.15.11@sha256:6cc31f3533deb138792db2c7d1ffc36f7456a06f1db5556ad3b6927641016f50
-        #  - v1.16.3@sha256:bced4bc71380b59873ea3917afe9fb35b00e174d22f50c7cab9188eac2b0fb88
-          - v1.18.2@sha256:7b27a6d0f2517ff88ba444025beae41491b016bc6af573ba467b70c5e8e0d85f
+          - v1.16.15@sha256:a89c771f7de234e6547d43695c7ab047809ffc71a0c3b65aa54eda051c45ed20
+          - v1.17.11@sha256:5240a7a2c34bf241afb54ac05669f8a46661912eab05705d660971eeb12f6555
+          - v1.18.8@sha256:f4bcc97a0ad6e7abaf3f643d890add7efe6ee4ab90baeb374b4f41a4c95567eb
     steps:
       - name: Checkout
         uses: actions/checkout@v2
               
       - name: Fetch history
         run: git fetch --prune --unshallow
+      
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        uses: helm/chart-testing-action@v2.0.0
 
       - name: Create kind ${{ matrix.k8s }} cluster
         uses: helm/kind-action@v1.0.0
         with:
-          node_image: kindest/node:${{ matrix.k8s }}
+          node_image: kindest/node:${{ matrix.k8s }} 
 
-      - name: Run chart-testing (install)
-        uses: helm/chart-testing-action@v1.0.0
-        with:
-          command: install --charts charts/istio-gateway
-          config: .github/ct.yaml
+      - name: Install Istio
+        uses: bilelkhalsi/istio-action@v0.1.0
+
+      - name: Run chart-testing (lint)
+        run: ct install --charts charts/istio-gateway

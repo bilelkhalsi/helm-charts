@@ -1,10 +1,12 @@
-name: Release Istio VirtualService HELM chart
+name: spring-boot-istio - Release HELM chart
+
 on:
   push:
     paths:
-      - charts/istio-virtual-service/**
+      - charts/spring-boot-istio/**
     branches:
       - master
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -20,6 +22,6 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
         with:
-          charts_dir: charts/istio-virtual-service
+          charts_dir: charts/spring-boot-istio
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"

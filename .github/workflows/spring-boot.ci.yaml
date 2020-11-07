@@ -1,15 +1,17 @@
-name: Test Istio VirtualService HELM chart
+name: spring-boot - Validate and Install HELM chart
+
 on:
   push:
     paths:
-      - charts/istio-virtual-service/**
+      - charts/spring-boot/**
     branches:
       - master
   pull_request:
     paths:
-      - charts/istio-virtual-service/**
+      - charts/spring-boot/**
     branches:
       - master
+
 jobs:
   kubeval-chart:
     runs-on: ubuntu-latest
@@ -21,12 +23,13 @@ jobs:
         run: git fetch --prune --unshallow
 
       - name: Run kubeval on HELM chart
-        id: kubeval
-        uses: helm/chart-testing-action@v1.0.0
-        - run: |
-            helm plugin install https://github.com/instrumenta/helm-kubeval
-        - run: |
-            helm kubeval charts/istio-gateway -v 1.9.0   
+        uses: instrumenta/kubeval-action@master
+        with:
+          files: charts/spring-boot
+          version: 1.9.0
+          strict: true
+          ignore_missing_schemas: true  
+              
   Install-chart:
     name: install-chart
     runs-on: ubuntu-latest
@@ -53,5 +56,5 @@ jobs:
       - name: Run chart-testing (install)
         uses: helm/chart-testing-action@v1.0.0
         with:
-          command: install
+          command: install --charts spring-boot
           config: .github/ct.yaml
