@@ -1,7 +1,9 @@
-name: Release Charts
+name: spring-boot-istio - Release HELM chart
 
 on:
   push:
+    paths:
+      - charts/spring-boot-istio/**
     branches:
       - master
 
@@ -13,12 +15,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.0.0
+        with:
+          charts_dir: charts/spring-boot-istio
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"

@@ -1,0 +1,3 @@
+{{ include "istio-gateway.name" . }} Istio Gateway install on {{ .Values.namespace }} namespace.
+---------------
+For further information on istio Gateway, take a look in istio documentation https://istio.io/latest/docs/concepts/traffic-management/

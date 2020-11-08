@@ -1,0 +1,15 @@
+# Default values for istio-gateway.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Namespace to install istio gateway. by default it's set to `istio-system`
+namespace: istio-system
+
+# -- This needs to be a valid istio gateway configuration.For further gateway configuration, take a look in [istio documentation](https://istio.io/latest/docs/concepts/traffic-management/#gateways)
+servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - "*"
