@@ -1,5 +1,24 @@
 apiVersion: v1
 entries:
+  istio-gateway:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-08T23:59:08.594509657Z"
+    description: A Helm chart to install istio Gateway on kubernetes cluster.
+    digest: fd3244424b22e92528a370548580be63cb4da060c19cf1013fb7a75ef4916442
+    home: https://bilelkhalsi.github.io/helm-charts/
+    keywords:
+    - kubernetes, helm, spring-boot
+    maintainers:
+    - email: bilel_khalsi@live.fr
+      name: bilelkhalsi
+    name: istio-gateway
+    sources:
+    - https://github.com/bilelkhalsi/helm-charts
+    type: application
+    urls:
+    - https://github.com/bilelkhalsi/helm-charts/releases/download/istio-gateway-0.1.1/istio-gateway-0.1.1.tgz
+    version: 0.1.1
   spring-boot:
   - apiVersion: v2
     appVersion: 0.1.0
