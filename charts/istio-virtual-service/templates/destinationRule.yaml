@@ -1,0 +1,10 @@
+{{- if .Values.DestinationRule -}}
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: {{ include "istio-virtual-service.fullname" . }}-destination
+  labels:
+    {{- include "istio-virtual-service.labels" . | nindent 4 }}
+spec:
+{{ .Values.DestinationRule | toYaml | indent 2 }}
+{{- end }}

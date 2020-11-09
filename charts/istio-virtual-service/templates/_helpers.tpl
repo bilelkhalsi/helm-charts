@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "spring-boot-istio.name" -}}
+{{- define "istio-virtual-service.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "spring-boot-istio.fullname" -}}
+{{- define "istio-virtual-service.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -27,16 +27,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "spring-boot-istio.chart" -}}
+{{- define "istio-virtual-service.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "spring-boot-istio.labels" -}}
-helm.sh/chart: {{ include "spring-boot-istio.chart" . }}
-{{ include "spring-boot-istio.selectorLabels" . }}
+{{- define "istio-virtual-service.labels" -}}
+helm.sh/chart: {{ include "istio-virtual-service.chart" . }}
+{{ include "istio-virtual-service.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -46,8 +46,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "spring-boot-istio.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "spring-boot-istio.name" . }}
+{{- define "istio-virtual-service.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "istio-virtual-service.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
