@@ -2,6 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+# -- Istio Gateway name
+nameOverride: istio-gateway
+
 # -- Namespace to install istio gateway. by default it's set to `istio-system`
 namespace: istio-system
 
