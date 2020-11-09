@@ -19,6 +19,25 @@ entries:
     urls:
     - https://github.com/bilelkhalsi/helm-charts/releases/download/istio-gateway-0.1.1/istio-gateway-0.1.1.tgz
     version: 0.1.1
+  istio-virtual-service:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2020-11-09T01:36:14.917144128Z"
+    description: A Helm chart to add Istio resources to Kubernetes cluster
+    digest: 246cb3addb8539b379ca95e9dfd9f635ea2a7ae6f07c4e9a68efcc917a6f7db1
+    home: https://bilelkhalsi.github.io/helm-charts/
+    keywords:
+    - kubernetes, helm, istio, spring-boot
+    maintainers:
+    - email: bilel_khalsi@live.fr
+      name: bilelkhalsi
+    name: istio-virtual-service
+    sources:
+    - https://github.com/bilelkhalsi/helm-charts
+    type: application
+    urls:
+    - https://github.com/bilelkhalsi/helm-charts/releases/download/istio-virtual-service-0.1.0/istio-virtual-service-0.1.0.tgz
+    version: 0.1.0
   spring-boot:
   - apiVersion: v2
     appVersion: 0.1.0
