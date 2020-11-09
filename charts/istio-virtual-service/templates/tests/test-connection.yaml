@@ -1,10 +1,9 @@
-{{- if .Values.enabled -}}
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "spring-boot-istio.fullname" . }}-test-connection"
+  name: "{{ include "istio-virtual-service.fullname" . }}-test-connection"
   labels:
-    {{- include "spring-boot-istio.labels" . | nindent 4 }}
+    {{- include "istio-virtual-service.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -14,4 +13,3 @@ spec:
       command: ['echo']
       args: ['There is no test for now']
   restartPolicy: Never
-{{- end }}
